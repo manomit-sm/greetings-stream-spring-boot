@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: greetings-stream-spring-boot
+  profiles:
+    active: local
+
+---
+spring:
+  config:
+    activated:
+      on-profile: local
+  kafka:
+    streams:
+      bootstrap-servers: localhost:9092
+      application-id: greetings-stream-spring-boot
+    properties:
+      default:
+        deserialization:
+          exception:
+            #handler: com.bsolz.learnkafkastreams.exceptions.GreetingDeserializationExceptionHandler
+
+        production:
+          exception:
+            handler: com.bsolz.learnkafkastreams.exceptions.GreetingStreamSerializationExceptionHandler
